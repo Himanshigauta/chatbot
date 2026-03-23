@@ -47,13 +47,13 @@ def query_rag(query_text: str):
     db = get_db()
     
     # Search for similar documents
-    results = db.similarity_search_with_relevance_scores(query_text, k=4)
+    results = db.similarity_search(query_text, k=4)
     
     if len(results) == 0:
         return "I am sorry, I couldn't find any specific information about that fund or metric in the current database.", []
 
-    context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
-    source_links = list(set([doc.metadata.get("source") for doc, _score in results if doc.metadata.get("source")]))
+    context_text = "\n\n---\n\n".join([doc.page_content for doc in results])
+    source_links = list(set([doc.metadata.get("source") for doc in results if doc.metadata.get("source")]))
 
     # System Prompt (Enforcing Factual, No Advice, No Personal Info, Source Citation)
     PROMPT_TEMPLATE = """
