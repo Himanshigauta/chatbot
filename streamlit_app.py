@@ -7,6 +7,88 @@ from dotenv import load_dotenv
 # App configuration
 st.set_page_config(page_title="Mutual Fund Assistant", page_icon="🤖", layout="centered")
 
+# Inject Custom CSS to match the Original UI
+CUSTOM_CSS = """
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+    
+    html, body, [class*="css"] {
+        font-family: 'Inter', sans-serif;
+    }
+    
+    /* Main Background */
+    .stApp {
+        background-color: #0d1117;
+        color: #c9d1d9;
+    }
+    
+    /* Header (Hide Streamlit menu line) */
+    header[data-testid="stHeader"] {
+        background-color: transparent !important;
+    }
+    
+    /* Sidebar Background */
+    [data-testid="stSidebar"] {
+        background-color: #010409 !important;
+        border-right: 1px solid #30363d;
+    }
+    
+    /* Sidebar Text */
+    [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3 {
+        color: #8b949e !important;
+    }
+    
+    /* Assistant Chat Bubble */
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
+        background-color: #21262d;
+        border: 1px solid #30363d;
+        border-radius: 12px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    
+    /* User Chat Bubble */
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
+        background-color: #1f6feb;
+        color: white !important;
+        border-radius: 12px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) p {
+        color: white !important;
+    }
+    
+    /* Chat Input Area */
+    [data-testid="stChatInput"] {
+        background-color: #161b22 !important;
+        border: 1px solid #30363d !important;
+        border-radius: 10px !important;
+    }
+    
+    /* Chat Input Text */
+    [data-testid="stChatInput"] textarea {
+        color: #c9d1d9 !important;
+    }
+    
+    /* Suggestion Buttons */
+    div.stButton > button {
+        background-color: #161b22 !important;
+        color: #c9d1d9 !important;
+        border: 1px solid #30363d !important;
+        border-radius: 8px !important;
+        transition: all 0.2s !important;
+        font-weight: 500 !important;
+    }
+    div.stButton > button:hover {
+        background-color: #30363d !important;
+        color: #fff !important;
+        border-color: #58a6ff !important;
+    }
+</style>
+"""
+st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
+
 # Load environment variables (for local testing; Streamlit Cloud uses st.secrets)
 load_dotenv()
 
