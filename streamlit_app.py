@@ -5,7 +5,7 @@ import json
 from dotenv import load_dotenv
 
 # App configuration
-st.set_page_config(page_title="Mutual Fund Assistant", page_icon="🤖", layout="centered")
+st.set_page_config(page_title="Mutual Fund Assistant", page_icon="groww_logo.ico", layout="centered")
 
 # Load environment variables (for local testing; Streamlit Cloud uses st.secrets)
 load_dotenv()
@@ -40,7 +40,15 @@ st.sidebar.markdown("---")
 st.sidebar.info("This is an AI assistant to help you understand mutual funds based on scraped data.")
 
 # Main Chat Interface
-st.title("🤖 Mutual Fund Q&A")
+st.markdown(
+    """
+    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+        <img src="https://assets-netstorage.groww.in/web-assets/bson_storage_files/webtemp/app-logo.svg" height="40">
+        <h1 style="margin: 0; padding: 0;">Mutual Fund Q&A</h1>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # Initialize chat history
 if "messages" not in st.session_state:
