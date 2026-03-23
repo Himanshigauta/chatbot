@@ -34,23 +34,7 @@ try:
 except Exception:
     st.sidebar.caption("**Last Data Update:** Unknown")
 
-st.sidebar.markdown("---")
-
-st.sidebar.markdown("### Suggested Queries")
-suggestions = [
-    "What is the expense ratio of Groww Liquid Fund Direct Growth?",
-    "What is the risk profile of Groww Overnight Fund Direct Growth?",
-    "Tell me the pros and cons of Groww Value Fund Direct Growth",
-    "What is the category of Groww Large Cap Fund Direct Growth?",
-    "What is the benchmark of Groww Multicap Fund Direct Growth?"
-]
-
-# When a suggestion is clicked, we can populate the chat input. 
-# Streamlit doesn't natively allow updating the physical chat input easily, 
-# but we can set a session state variable to trigger a run.
-for suggestion in suggestions:
-    if st.sidebar.button(suggestion, use_container_width=True, type="secondary"):
-        st.session_state.submit_suggestion = suggestion
+# (Suggestions moved to main page)
 
 st.sidebar.markdown("---")
 st.sidebar.info("This is an AI assistant to help you understand mutual funds based on scraped data.")
@@ -61,6 +45,23 @@ st.title("🤖 Mutual Fund Q&A")
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
+
+# Show suggestions on main page ONLY if chat history is empty
+if len(st.session_state.messages) == 0:
+    st.markdown("### Try asking one of these verified questions:")
+    suggestions = [
+        "What is the expense ratio of Groww Liquid Fund Direct Growth?",
+        "What is the risk profile of Groww Overnight Fund Direct Growth?",
+        "Tell me the pros and cons of Groww Value Fund Direct Growth",
+        "What is the category of Groww Large Cap Fund Direct Growth?",
+        "What is the benchmark of Groww Multicap Fund Direct Growth?"
+    ]
+    
+    # Create columns for a grid layout or just stack them
+    for suggestion in suggestions:
+        if st.button(suggestion, use_container_width=True, type="secondary"):
+            st.session_state.submit_suggestion = suggestion
+            st.rerun()
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
