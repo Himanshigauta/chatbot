@@ -36,13 +36,7 @@ st.sidebar.markdown(
 )
 st.sidebar.markdown("---")
 
-# Fetch status
-try:
-    with open("last_updated.json", "r") as f:
-        data = json.load(f)
-        st.sidebar.caption(f"**Last Data Update:**\n{data.get('last_updated', 'Unknown')}")
-except Exception:
-    st.sidebar.caption("**Last Data Update:** Unknown")
+# (Fetch status moved to main interface)
 
 # (Suggestions moved to main page)
 
@@ -52,7 +46,7 @@ st.sidebar.info("This is an AI assistant to help you understand mutual funds bas
 # Main Chat Interface
 st.markdown(
     """
-    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 5px;">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00d09c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-6 6"/><circle cx="18" cy="9" r="2" fill="#00d09c"/>
         </svg>
@@ -61,6 +55,17 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+# Fetch and display last updated time right under the title
+try:
+    with open("last_updated.json", "r") as f:
+        data = json.load(f)
+        last_time = data.get('last_updated', 'Unknown')
+except Exception:
+    last_time = 'Unknown'
+
+st.caption(f"📅 **Database Last Updated:** {last_time}")
+st.divider()
 
 # Initialize chat history
 if "messages" not in st.session_state:
