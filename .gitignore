@@ -24,8 +24,8 @@ wheels/
 venv/
 venv-win/
 
-# Chroma DB
-phase2_indexing/chroma_db_full/
+# Chroma DB is small enough (~9MB) to be committed directly so Streamlit Cloud can use it.
+# phase2_indexing/chroma_db_full/
 
 # Large JSON files if any (You might want to commit these if they are essential starting data but we'll exclude them to keep repo size small if they are dynamically generated, otherwise you can remove this)
 *.json
