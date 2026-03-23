@@ -1,0 +1,31 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.env
+.venv
+venv/
+venv-win/
+
+# Chroma DB
+phase2_indexing/chroma_db_full/
+
+# Large JSON files if any (You might want to commit these if they are essential starting data but we'll exclude them to keep repo size small if they are dynamically generated, otherwise you can remove this)
+*.json

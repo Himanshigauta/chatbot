@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutual Fund Chat Bot</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation -->
+        <header class="top-nav">
+            <div class="logo">Chat Bot</div>
+            <div class="nav-icons">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-th-large"></i>
+                <i class="fas fa-bell"></i>
+                <div class="user-avatar">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User">
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Left Sidebar -->
+            <aside class="left-sidebar">
+                <div class="sidebar-header">
+                    <h2>Chats</h2>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <div class="sidebar-search">
+                    <input type="text" placeholder="Search...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="chat-list" id="recent-funds">
+                    <div class="chat-item active">
+                        <div class="avatar"><i class="fas fa-chart-line"></i></div>
+                        <div class="chat-info">
+                            <span class="chat-name">Groww Liquid Fund</span>
+                            <span class="chat-preview">Current Expense: 0.1%</span>
+                        </div>
+                        <span class="time">online</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Chat Area -->
+            <section class="chat-area">
+                <div class="chat-header">
+                    <div class="header-user">
+                        <div class="avatar-large"><i class="fas fa-robot"></i></div>
+                        <div class="user-status">
+                            <h3>Mutual Fund Assistant</h3>
+                            <span id="last-updated">Checking data status...</span>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <i class="fas fa-phone"></i>
+                        <i class="fas fa-video"></i>
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                </div>
+
+                <div class="message-list" id="chat-messages">
+                    <div class="message bot">
+                        <div class="bubble">
+                            Hi! I am your Mutual Fund assistant. I can help you with details like expense ratios, exit loads, and holdings for any scheme on Groww.in.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <div class="input-wrapper">
+                        <input type="text" id="user-input" placeholder="Say something...">
+                        <div class="input-actions">
+                            <i class="far fa-smile"></i>
+                            <i class="fas fa-paperclip"></i>
+                            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Sidebar -->
+            <aside class="right-sidebar">
+                <div class="section">
+                    <h3>Notification</h3>
+                    <div class="notification-item">
+                        <div class="notif-avatar">N</div>
+                        <div class="notif-text">Latest NAV updated for 184 funds.</div>
+                    </div>
+                </div>
+                <div class="section">
+                    <h3>Suggestions</h3>
+                    <div class="suggestion-list" id="suggestions">
+                        <!-- Suggestions will be populated here -->
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
