@@ -26,7 +26,9 @@ except ImportError as e:
 st.sidebar.markdown(
     """
     <div style="display: flex; align-items: center; gap: 10px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Groww_app_logo.png" height="25">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d09c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-6 6"/><circle cx="18" cy="9" r="2" fill="#00d09c"/>
+        </svg>
         <h2 style="margin: 0; padding: 0;">Mutual Fund Assistant</h2>
     </div>
     """,
@@ -51,7 +53,9 @@ st.sidebar.info("This is an AI assistant to help you understand mutual funds bas
 st.markdown(
     """
     <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Groww_app_logo.png" height="40">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00d09c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-6 6"/><circle cx="18" cy="9" r="2" fill="#00d09c"/>
+        </svg>
         <h1 style="margin: 0; padding: 0;">Mutual Fund Q&A</h1>
     </div>
     """,
@@ -82,7 +86,7 @@ if len(st.session_state.messages) == 0:
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
     if message["role"] == "assistant":
-        with st.chat_message("assistant", avatar="https://upload.wikimedia.org/wikipedia/commons/4/43/Groww_app_logo.png"):
+        with st.chat_message("assistant", avatar="📈"):
             st.markdown(message["content"])
     else:
         with st.chat_message(message["role"]):
@@ -98,7 +102,7 @@ def process_query(prompt: str):
     st.session_state.messages.append({"role": "user", "content": prompt})
 
     # Generate response
-    with st.chat_message("assistant", avatar="https://upload.wikimedia.org/wikipedia/commons/4/43/Groww_app_logo.png"):
+    with st.chat_message("assistant", avatar="📈"):
         if not backend_loaded:
             response = "Backend failed to load. Please check logs."
             sources_html = ""
