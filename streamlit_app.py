@@ -23,7 +23,15 @@ except ImportError as e:
     backend_loaded = False
 
 # Sidebar: Status and Quick Suggestions
-st.sidebar.title("Mutual Fund Assistant")
+st.sidebar.markdown(
+    """
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="https://assets-netstorage.groww.in/web-assets/bson_storage_files/webtemp/app-logo.svg" height="25">
+        <h2 style="margin: 0; padding: 0;">Mutual Fund Assistant</h2>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 st.sidebar.markdown("---")
 
 # Fetch status
@@ -73,8 +81,12 @@ if len(st.session_state.messages) == 0:
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+    if message["role"] == "assistant":
+        with st.chat_message("assistant", avatar="https://assets-netstorage.groww.in/web-assets/bson_storage_files/webtemp/app-logo.svg"):
+            st.markdown(message["content"])
+    else:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
 
 # Function to handle processing a query
 def process_query(prompt: str):
@@ -86,7 +98,7 @@ def process_query(prompt: str):
     st.session_state.messages.append({"role": "user", "content": prompt})
 
     # Generate response
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar="https://assets-netstorage.groww.in/web-assets/bson_storage_files/webtemp/app-logo.svg"):
         if not backend_loaded:
             response = "Backend failed to load. Please check logs."
             sources_html = ""
