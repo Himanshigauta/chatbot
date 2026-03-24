@@ -142,13 +142,13 @@ def process_query(prompt: str):
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
 
+# Always display the chat input
+prompt = st.chat_input("Ask me anything about MF schemes...")
+
 # Check if a suggestion was clicked
 if "submit_suggestion" in st.session_state:
-    prompt = st.session_state.submit_suggestion
+    suggestion = st.session_state.submit_suggestion
     del st.session_state.submit_suggestion
+    process_query(suggestion)
+elif prompt:
     process_query(prompt)
-
-# Accept user input
-else:
-    if prompt := st.chat_input("Ask me anything about MF schemes..."):
-        process_query(prompt)
