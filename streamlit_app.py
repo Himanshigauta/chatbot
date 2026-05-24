@@ -1,3 +1,13 @@
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
+import os
+# Force pure-python implementation to avoid descriptor conflicts on Streamlit Cloud
+os.environ["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION"] = "python"
+# Disable ChromaDB telemetry which often triggers the failing imports
+os.environ["ANONYMIZED_TELEMETRY"] = "False"
+
 import streamlit as st
 import os
 import sys
