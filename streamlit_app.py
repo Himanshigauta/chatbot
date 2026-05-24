@@ -2,6 +2,12 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
+# Prevent the OpenTelemetry gRPC import TypeError crash on Streamlit Cloud
+from types import ModuleType
+mock_trace_exporter = ModuleType("trace_exporter")
+mock_trace_exporter.OTLPSpanExporter = None
+sys.modules["opentelemetry.exporter.otlp.proto.grpc.trace_exporter"] = mock_trace_exporter
+
 import os
 # Force pure-python implementation to avoid descriptor conflicts on Streamlit Cloud
 os.environ["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION"] = "python"
